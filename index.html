@@ -21,6 +21,41 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Hwaye</title>
+		
+		<script>
+			function openSocialMedia(appName, username) {
+				let appUrl = '';
+				let webUrl = '';
+
+				switch (appName.toLowerCase()) {
+					case 'instagram':
+						appUrl = `instagram://user?username=${username}`;
+						webUrl = `https://www.instagram.com/${username}`;
+						break;
+					case 'twitter':
+						appUrl = `twitter://user?screen_name=${username}`;
+						webUrl = `https://twitter.com/${username}`;
+						break;
+					case 'facebook':
+						appUrl = `fb://profile/${username}`;
+						webUrl = `https://www.facebook.com/${username}`;
+						break;
+					// Tambahkan aplikasi lain sesuai kebutuhan
+					default:
+						console.error('App not supported');
+						return;
+				}
+
+				// Coba buka aplikasi
+				window.location = appUrl;
+
+				// Fallback ke versi web setelah menunggu
+				setTimeout(function() {
+					window.location = webUrl;
+				}, 1500);
+			}
+		</script>
+		
 		<link rel="stylesheet" href="style.css">
 	</head>
 	<body>
@@ -42,11 +77,13 @@
 
 			<div class="links">
 				<a href="https://saweria.co/Hwaye" target="_blank" class="button">Support Hwaye di sini</a>
-				<a href="https://instagram.com/hwaye_ch" target="_blank" class="button" 
-					onclick="gtag('event', 'click', {
+				<a href="#" target="_blank" class="button" 
+					onclick="openSocialMedia('instagram', 'hwaye_ch'); return false;"
+					<!-- onclick="gtag('event', 'click', {
 						'event_category': 'Link', 
 						'event_label': 'Instagram'
-					});">
+					});" -->
+				>
 					Instagram
 				</a>
 				<a href="https://youtube.com/@hwaye_ch" target="_blank" class="button" 
